@@ -1,6 +1,6 @@
 # Project Overview
 
-This project is a **property price checker prototype** for a student software engineering group.
+This project is a **property price checker prototype**
 
 The goal is to help users evaluate a property listing by:
 - estimating a fair market price from historical transactions,
