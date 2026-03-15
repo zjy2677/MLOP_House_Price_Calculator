@@ -105,7 +105,7 @@ This is now organized as a **4-person project**.
 - Verify commune coverage and data consistency in `city_price_benchmark.csv`.
 - Provide sample test cases from `data/samples.csv`.
 
-## Member D — Integration, Testing, and Demo *(this is what I would do)*
+## Member D — Integration, Testing, and Demo 
 - Integrate frontend ↔ backend in Docker Compose.
 - Run end-to-end checks on sample scenarios.
 - Prepare demo script and final documentation updates in `README.md` / `docs/`.
