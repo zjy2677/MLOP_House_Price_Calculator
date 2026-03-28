@@ -1,21 +1,15 @@
-# MLOP – House Price Calculator API
+# MLOP – House Price Calculator (FRANCE)
 
-This repository contains a simple **FastAPI-based REST API** for estimating house prices using a transparent, rule-based scoring function.
+This repository contains a simple **HOUSE PRICE CALCULATOR** for estimating house prices in FRANCE.
 
 The project is designed as a learning-oriented backend service and follows basic **MLOps / backend best practices**:
-- separation between API layer and business logic
-- containerization with Docker
-- dependency management via `pyproject.toml`
+- Region: Whole France 
+- We want a quick and general estimation of any of house in a specific region in France
 
----
 
-The API exposes an endpoint that:
-- accepts house characteristics (size, rooms, location score, energy rating, etc.)
-- computes an estimated house price
-- returns a detailed price breakdown and a confidence score
+------------------------------------------
 
-This is **not a machine learning model (yet)**.  
-It is a deterministic pricing function that can later be replaced or extended with ML.
+
 
 ```text
 ------------------------------------------
