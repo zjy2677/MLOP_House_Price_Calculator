@@ -36,7 +36,7 @@ Project structure:
 ├── .env.example
 ├── .gitignore
 └── README.md
-
+```
 We seperated our repo into the following parts:
 (1)backend: This will contains a service folder which has scoring.py that calculates the
             overall score of the house and a anomaly.py that examine if alarm should be triggered.
