@@ -14,13 +14,26 @@ Thus, we were able to calculate a average price estimator of house in euros/ m^2
 
 
 ```text
-------------------------------------------
 Project structure:
-├── app/
-│ ├── main.py # FastAPI entrypoint (API layer)
-│ └── scoring.py # House price scoring logic
-├── Dockerfile
-├── pyproject.toml
+
+├── backend/
+│   ├── services/
+│   │   ├── anomaly.py
+│   │   ├── scoring.py
+│   ├── Dockerfile
+│   ├── main.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── app.py
+│   ├── requirements.txt
+│   └── Dockerfile
+│
+├── data/
+│   ├── city_price_benchmark.csv (This is the complete data file)
+│   └── sample.csv (This contains test data sample)
+│
+├── .env.example
 ├── .gitignore
 └── README.md
 
