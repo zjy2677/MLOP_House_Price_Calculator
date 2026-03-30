@@ -1,5 +1,5 @@
 from services.scoring import calculate_price
-def detect_anomaly(city: str, actual_price, surface: float, df):
+def detect_anomaly(city: str, actual_price, surface: float, benchmark_df):
   '''
   To detect whether there's anomaly existed, we compare it to our estimation using the following rules:
   (1) actual price > 1.3 * estimated price -> anomaly overpriced
@@ -17,7 +17,7 @@ def detect_anomaly(city: str, actual_price, surface: float, df):
   if surface <= 0:
     raise ValueError("Surface area must be greater than 0")
 
-  estimated_price = calculate_price(city, surface, df)
+  estimated_price = calculate_price(city, surface, benchmark_df)
   lower_bound = 0.8 * estimated_price
   upper_bound - 1.3 * estimated_price
   
