@@ -13,9 +13,8 @@ st.sidebar.title("Instructions")
 st.sidebar.markdown("""
 ### How to use this app
 
-1. Select a city from the dropdown  
-2. Use the search to quickly find your city  
-3. Review the results displayed on the main page  
+1. Select a city PARIS 01 - PARIS 15
+ 
 
 ---
 
