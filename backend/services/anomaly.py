@@ -19,7 +19,7 @@ def detect_anomaly(city: str, actual_price, surface: float, benchmark_df):
 
   estimated_price = calculate_price(city, surface, benchmark_df)
   lower_bound = 0.8 * estimated_price
-  upper_bound - 1.3 * estimated_price
+  upper_bound = 1.3 * estimated_price
   
   if actual_price < lower_bound:
         anomaly_type = "anomaly_underprice"
