@@ -1,10 +1,16 @@
 import streamlit as st
 import requests
 import os
+from pathlib import Path
 
 # Backend URL (works locally, can change later for Docker)
-# BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
 BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
+docker_path = Path("/app/data/city_price_benchmark.csv")
+local_path = Path("../data/city_price_benchmark.csv")
+
+data_path = docker_path if docker_path.exists() else local_path
+
+df = pd.read_csv(data_path)
 
 st.title("House Price Prototype")
 
@@ -12,21 +18,16 @@ st.sidebar.title("Instructions")
 
 st.sidebar.markdown("""
 ### How to use this app
-
-1. Select a city PARIS 01 - PARIS 15
- 
-
----
-
-### 💡 Tips
-- You can type to filter cities faster  
-- Names may differ from official spelling  
-- Use the formatted labels for clarity  
+1.Select a city PARIS 01 - PARIS 15
+2.Input the Surface Area of the house
+3.Input the actual price of the house
+4.You can chekc the estimated price and status by clicking the two buttons
 """)
 # --- Inputs ---
-city = st.text_input("City")
-surface = st.number_input("Surface (m²)", min_value=1.0, step=1.0)
-actual_price = st.number_input("Actual Price", min_value=1.0, step=1000.0)
+cities = sorted(df["Commune"].tolist())
+city = st.selectbox("Select City", cities)
+surface = st.number_input("Surface (m²)", min_value=1.0)
+actual_price = st.number_input("Actual Price", min_value=1.0)
 
 st.divider()
 
