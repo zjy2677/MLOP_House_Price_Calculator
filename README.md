@@ -20,14 +20,12 @@ Project structure:
 │   ├── services/
 │   │   ├── anomaly.py
 │   │   ├── scoring.py
-│   ├── Dockerfile
 │   ├── main.py
 │   └── requirements.txt
 │
 ├── frontend/
 │   ├── app.py
-│   ├── requirements.txt
-│   └── Dockerfile
+│   └── requirements.txt
 │
 ├── data/
 │   ├── city_price_benchmark.csv (This is the complete data file)
