@@ -1,10 +1,13 @@
+import sys
+from pathlib import Path
+
+ROOT_DIR = Path(__file__).resolve().parents[1]
+sys.path.append(str(ROOT_DIR))
+
 import streamlit as st
-import requests
-import os
 from backend.services.scoring import calculate_price, load_benchmark_data
 from backend.services.anomaly import detect_anomaly
-from pathlib import Path
-import pandas as pd
+
 
 data_path = Path("data/city_price_benchmark.csv")
 df = load_benchmark_data(data_path)
