@@ -19,10 +19,10 @@ st.sidebar.title("Instructions")
 
 st.sidebar.markdown("""
 ### How to use this app
-1.Select a city from scrollbar
-2.Input the Surface Area of the house
-3.Input the actual price of the house
-4.You can chekc the estimated price and status by clicking the two buttons
+1.Select a city from scrollbar<br>
+2.Input the Surface Area of the house<br>
+3.Input the actual price of the house<br>
+4.You can chekc the estimated price and status by clicking the two buttons<br>
 """)
 # --- Inputs ---
 cities = sorted(df["Commune"].tolist())
