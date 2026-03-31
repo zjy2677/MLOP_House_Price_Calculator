@@ -65,7 +65,7 @@ For each `/price` request (`city`, `surface`):
 
 `estimated_price = surface * avg_price_m2(city)`
 
-This gives a fast and interpretable reference value for the input property.
+This gives a reference value for the input property.
 
 ### 3) Anomaly detection logic
 For each `/anomaly` request (`city`, `surface`, `actual_price`):
