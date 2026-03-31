@@ -7,7 +7,7 @@ from pathlib import Path
 import pandas as pd
 
 data_path = Path("data/city_price_benchmark.csv")
-df = pd.read_csv(data_path)
+df = load_benchmark_data(data_path)
 
 st.title("House Price Prototype")
 
