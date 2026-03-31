@@ -114,6 +114,6 @@ docker run -d \
 ## Where to improve
 
 (1) We use a rather naive model average price * surface area to predict, we could try to implement a more complex model <br>
-(2) We could use a google gemini api as a chatbot assistant to help customer <br>
+(2) We could use a google gemini api to build a chatbot that further assist our customer in using this app <br>
 
 
