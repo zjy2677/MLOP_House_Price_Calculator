@@ -33,48 +33,15 @@ actual_price = st.number_input("Actual Price", min_value=1.0)
 st.divider()
 
 if st.button("Estimate Price"):
-    try:
-        response = requests.post(
-            f"{BACKEND_URL}/price",
-            json={
-                "city": city,
-                "surface": surface
-            }
-        )
-
-        if response.status_code == 200:
-            data = response.json()
-            st.success(f"The estimated price of this house is approximately {data['estimated_price']:.2f} euros")
-        else:
-            st.error(response.json()["detail"])
-
-    except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to backend. Is FastAPI running?")
-
-
+    estimated_price = calculate_price(city, surface, df)
+    st.success(f"The estimated price of this house is approximately {data['estimated_price']:.2f} euros")
+ 
 # Anomaly detection module
 if st.button("Check Anomaly"):
-    try:
-        response = requests.post(
-            f"{BACKEND_URL}/anomaly",
-            json={
-                "city": city,
-                "actual_price": actual_price,
-                "surface": surface
-            }
-        )
-
-        if response.status_code == 200:
-            data = response.json()
-            if (data['status'] == 'anomaly_overprice'):
-                st.error("This house is overpriced")
-            elif (data['status'] == 'anomaly_underprice'):
-                st.error("This house is underpriced")
-            else:
-                st.success("This house is in normal price range")
-                         
-        else:
-            st.error(response.json()["detail"])
-
-    except requests.exceptions.ConnectionError:
-        st.error("Cannot connect to backend. Is FastAPI running?")
+    result = detect_anomaly(city, actual_price, surface, df)
+    if result['status'] == 'anomaly_overprice':
+        st.error("This house is overpriced")
+    elif result['status'] == 'anomaly_underprice':
+        st.warning("This house is underpriced")
+    else:
+        st.success("This house is in normal price range")
