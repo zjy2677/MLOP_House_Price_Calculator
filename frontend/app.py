@@ -17,13 +17,16 @@ st.title("House Price Prototype")
 
 st.sidebar.title("Instructions")
 
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    """
 ### How to use this app
-1.Select a city from scrollbar<br>
-2.Input the Surface Area of the house<br>
-3.Input the actual price of the house<br>
-4.You can chekc the estimated price and status by clicking the two buttons<br>
-""")
+
+1. Select a city from the dropdown
+2. Input the surface area of the house
+3. Input the actual price of the house
+4. Click the buttons to check the estimated price and anomaly status
+"""
+)
 # --- Inputs ---
 cities = sorted(df["Commune"].tolist())
 city = st.selectbox("Select City", cities)
