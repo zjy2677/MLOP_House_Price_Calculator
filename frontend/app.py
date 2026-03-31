@@ -7,7 +7,7 @@ import pandas as pd
 # Backend URL (works locally, can change later for Docker)
 BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
 docker_path = Path("/app/data/city_price_benchmark.csv")
-local_path = Path("../data/city_price_benchmark.csv")
+local_path = Path("data/city_price_benchmark.csv")
 
 data_path = docker_path if docker_path.exists() else local_path
 
