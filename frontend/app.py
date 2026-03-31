@@ -17,14 +17,18 @@ st.title("House Price Prototype")
 
 st.sidebar.title("Instructions")
 
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    """
 ### How to use this app
-1.Select a city PARIS 01 - PARIS 15
-2.Input the Surface Area of the house
-3.Input the actual price of the house
-4.You can chekc the estimated price and status by clicking the two buttons
-""")
-# --- Inputs ---
+
+1. Select a city from the dropdown
+2. Input the surface area of the house
+3. Input the actual price of the house
+4. Click the buttons to check the estimated price and anomaly status
+"""
+)
+
+# Inputs start from here
 cities = sorted(df["Commune"].tolist())
 city = st.selectbox("Select City", cities)
 surface = st.number_input("Surface (m²)", min_value=1.0)
@@ -32,7 +36,6 @@ actual_price = st.number_input("Actual Price", min_value=1.0)
 
 st.divider()
 
-# --- Price Estimation ---
 if st.button("Estimate Price"):
     try:
         response = requests.post(
@@ -45,7 +48,7 @@ if st.button("Estimate Price"):
 
         if response.status_code == 200:
             data = response.json()
-            st.success(f"Estimated Price: {data['estimated_price']:.2f}")
+            st.success(f"The estimated price of this house is approximately {data['estimated_price']:.2f} euros")
         else:
             st.error(response.json()["detail"])
 
@@ -53,7 +56,7 @@ if st.button("Estimate Price"):
         st.error("Cannot connect to backend. Is FastAPI running?")
 
 
-# --- Anomaly Detection ---
+# Anomaly detection module
 if st.button("Check Anomaly"):
     try:
         response = requests.post(
@@ -67,11 +70,13 @@ if st.button("Check Anomaly"):
 
         if response.status_code == 200:
             data = response.json()
-
-            st.write(f"Estimated Price: {data['estimated_price']:.2f}")
-            st.write(f"Actual Price: {data['actual_price']:.2f}")
-            st.write(f"Status: {data['status']}")
-
+            if (data['status'] == 'anomaly_overprice'):
+                st.error("This house is overpriced")
+            elif (data['status'] == 'anomaly_underprice'):
+                st.error("This house is underpriced")
+            else:
+                st.success("This house is in normal price range")
+                         
         else:
             st.error(response.json()["detail"])
 
