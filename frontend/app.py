@@ -12,16 +12,10 @@ st.sidebar.title("Instructions")
 
 st.sidebar.markdown("""
 ### How to use this app
-
-1. Select a city PARIS 01 - PARIS 15
- 
-
----
-
-### 💡 Tips
-- You can type to filter cities faster  
-- Names may differ from official spelling  
-- Use the formatted labels for clarity  
+1.Select a city PARIS 01 - PARIS 15
+2.Input the Surface Area of the house
+3.Input the actual price of the house
+4.You can chekc the estimated price and status by clicking the two buttons
 """)
 # --- Inputs ---
 city = st.text_input("City")
