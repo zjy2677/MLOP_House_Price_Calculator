@@ -7,21 +7,29 @@ import base64
 
 
 BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
-data_path = Path(os.getenv("DATA_PATH"))
+
+data_path = os.getenv("DATA_PATH")
 if not data_path:
     raise RuntimeError("Missing required environment variable: DATA_PATH")
-df = pd.read_csv(data_path)
+data_path = Path(data_path)
+if not data_path.exists():
+    raise RuntimeError(f"DATA_PATH does not exist: {data_path}")
 
-background_path = Path(os.getenv("BACKGROUND_IMAGE_PATH"))
+background_path = os.getenv("BACKGROUND_IMAGE_PATH")
 if not background_path:
     raise RuntimeError("Missing required environment variable: BACKGROUND_IMAGE_PATH")
+background_path = Path(background_path)
+if not background_path.exists():
+    raise RuntimeError(f"BACKGROUND_IMAGE_PATH does not exist: {background_path}")
+
+df = pd.read_csv(data_path)
     
 def get_base64(file_path):
     with open(file_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-if background_path.exists():
-    base64_img = get_base64(background_path)
+if Path(background_path).exists():
+    base64_img = get_base64(Path(background_path))
     st.markdown(
         f"""
         <style>
