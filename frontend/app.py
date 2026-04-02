@@ -49,16 +49,17 @@ if Path(background_path).exists():
 
 st.title("Price a house")
 
-st.sidebar.title("Instructions")
+st.sidebar.title("Users Guide")
 
 st.sidebar.markdown(
     """
-### How to use this app
+### Weclome to Price a house!
 
-1. Select a city from the dropdown
-2. Input the surface area of the house
-3. Input the actual price of the house
-4. Click the buttons to check the estimated price and anomaly status
+This app will help you check the value of a property
+1. You select a city/region of the property
+2. You type in the surface area and listed value of the property 
+3. Upon clicking the estimate price button, you will get an estimated price of the property
+4. Upon clicking the analysis button, you will see a detailed analysis on the listed price of the property
 """
 )
 
