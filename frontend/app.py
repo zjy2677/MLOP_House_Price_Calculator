@@ -5,7 +5,7 @@ from pathlib import Path
 import pandas as pd
 import base64
 
-# Backend URL (works locally, can change later for Docker)
+
 BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
 data_path = Path(os.getenv("DATA_PATH"))
 if not data_path:
