@@ -73,21 +73,21 @@ if st.button("Check Anomaly"):
 
             if data['status'] == 'anomaly_overprice':
                 st.error(
-                    f"The estimated price of this house is {data['estimated_price']}, "
-                    f"the actual price {data['actual_price']} has exceeded 1.3 times of the estimated price, "
+                    f"The estimated price of this house is {data['estimated_price']:.2f}, "
+                    f"the actual price {data['actual_price']:.2f} has exceeded 1.3 times of the estimated price, "
                     f"please be careful that this house is overpriced."
                 )
 
             elif data['status'] == 'anomaly_underprice':
                 st.warning(
-                    f"The estimated price of this house is {data['estimated_price']}, "
-                    f"the actual price {data['actual_price']} has dropped below 80% of the estimated price, "
+                    f"The estimated price of this house is {data['estimated_price']:.2f}, "
+                    f"the actual price {data['actual_price']:.2f} has dropped below 80% of the estimated price, "
                     f"this house is underpriced and please be aware."
                 )
 
             else:
                 st.success(
-                    f"This actual price {data['actual_price']} stays in range 80% - 130% of our estimated price {data['estimated_price']}. "
+                    f"This actual price {data['actual_price']:.2f} stays in range 80% - 130% of our estimated price {data['estimated_price']:.2f}. "
                     f"The price is considered as noraml"
                 )
 
