@@ -13,7 +13,7 @@ data_path = docker_path if docker_path.exists() else local_path
 
 df = pd.read_csv(data_path)
 
-st.title("House Price Prototype")
+st.title("Price your house")
 
 st.sidebar.title("Instructions")
 
