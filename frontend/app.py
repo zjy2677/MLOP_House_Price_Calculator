@@ -36,7 +36,7 @@ st.markdown(
 data_path = Path("data/city_price_benchmark.csv")
 df = load_benchmark_data(data_path)
 
-st.title("Price your house")
+st.title("Price a house")
 
 st.sidebar.title("Instructions")
 
