@@ -6,7 +6,7 @@ from services.anomaly import detect_anomaly
 from pathlib import Path
 
 
-data_path = os.getenv("DATA_PATH")
+data_path = Path(os.getenv("DATA_PATH"))
 if not data_path:
     raise RuntimeError("Missing required environment variable: DATA_PATH")
     
