@@ -36,11 +36,11 @@ estimated_price = calculate_price(city, surface, df)
 
 st.divider()
 
-if st.button("Estimate Price"):
+if st.button("Estimate house price"):
     st.success(f"The estimated price of this house is approximately {estimated_price:.2f} euros")
  
 # Anomaly detection module
-if st.button("Check Anomaly"):
+if st.button("Show pricing analysis"):
     result = detect_anomaly(city, actual_price, surface, df)
     if result['status'] == 'anomaly_overprice':
         st.error(f"The estimated price of this house is {estimated_price:.2f}, the actual price {actual_price:.2f} has exceeded 1.3 times of the estimated price, please be careful that this house is overpriced.")
