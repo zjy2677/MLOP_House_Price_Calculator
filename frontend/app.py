@@ -7,12 +7,12 @@ import base64
 
 # Backend URL (works locally, can change later for Docker)
 BACKEND_URL = os.getenv("BACKEND_URL", "http://127.0.0.1:8000")
-data_path = os.getenv("DATA_PATH")
+data_path = Path(os.getenv("DATA_PATH"))
 if not data_path:
     raise RuntimeError("Missing required environment variable: DATA_PATH")
 df = pd.read_csv(data_path)
 
-background_path = os.getenv("BACKGROUND_IMAGE_PATH")
+background_path = Path(os.getenv("BACKGROUND_IMAGE_PATH"))
 if not background_path:
     raise RuntimeError("Missing required environment variable: BACKGROUND_IMAGE_PATH")
     
