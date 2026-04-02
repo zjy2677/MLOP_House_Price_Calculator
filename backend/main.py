@@ -1,12 +1,15 @@
+import os
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from services.scoring import load_benchmark_data, calculate_price
 from services.anomaly import detect_anomaly
 from pathlib import Path
 
-docker_path = Path("/app/data/city_price_benchmark.csv")
-local_path = Path("../data/city_price_benchmark.csv")
-data_path = docker_path if docker_path.exists() else local_path
+
+data_path = os.getenv("DATA_PATH")
+if not data_path:
+    raise RuntimeError("Missing required environment variable: DATA_PATH")
+    
 benchmark_df = load_benchmark_data(data_path)
 
 app = FastAPI(title="House Price Backend")
