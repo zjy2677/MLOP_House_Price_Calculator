@@ -32,19 +32,19 @@ cities = sorted(df["Commune"].tolist())
 city = st.selectbox("Select City", cities)
 surface = st.number_input("Surface (m²)", min_value=1.0)
 actual_price = st.number_input("Actual Price", min_value=1.0)
+estimated_price = calculate_price(city, surface, df)
 
 st.divider()
 
 if st.button("Estimate Price"):
-    estimated_price = calculate_price(city, surface, df)
     st.success(f"The estimated price of this house is approximately {estimated_price:.2f} euros")
  
 # Anomaly detection module
 if st.button("Check Anomaly"):
     result = detect_anomaly(city, actual_price, surface, df)
     if result['status'] == 'anomaly_overprice':
-        st.error("This house is overpriced")
+        st.error(f"The estimated price of this house is {estimated_price}, the actual price {actual_price} has exceeded 1.3 times of the estimated price, please be careful that this house is overpriced.")
     elif result['status'] == 'anomaly_underprice':
-        st.warning("This house is underpriced")
+        st.warning(f"The estimated price of this house is {estimated_price}, the actual price {actual_price} has dropped below 80% of the estimated price, this house is underpriced and please be aware.")
     else:
-        st.success("This house is in normal price range")
+        st.success(f"This actual price {actual_price} stays in range 80% - 130% of our estimated price {estimated_price}. The price is considered as noraml")
