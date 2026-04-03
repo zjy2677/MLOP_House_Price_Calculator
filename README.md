@@ -1,9 +1,43 @@
-# MLOP – House Price Calculator (FRANCE) - Docker Version
+# PriceYourHouse - Product Version
+## What It Does and Why It Matters 
+
+The French real estate market is highly fragmented. Individual agencies controlling small regional markets have built invisible walls that block the flow of pricing information. Customers looking for transparent benchmark prices can only resort to random web searches or word-of-mouth, causing both inefficiency and frustration.
+
+PriceYourHouse was born out of this gap. We give each customer a personal experience when answering the questions that actually matter to them: **Am I paying a reasonable price for this house? If not, by how much am I off — and what should I do about it?**
+
+
+## Product Overview 
+Our product prototype encapsulates clear front-end and back-end logic. The minimalistic UI guides users with both user guide in the left panel (visible when clicking on the arrow mark) and the instructional input boxes. After uses input the city, the surface and the asking price that are compliant to the validation constraints, they can choose either to get an instant benchmark price calculation by clicking on the `Estimate house price` button, or jump directly into the price analysis (`Show pricing analysis` button) that compares the price of this selected property with the benchmark price of the house of identical surface in the same region. If our backend algorithm detects an anomaly, the user will be advise to conduct further investigations before purchasing.  
+
+## Known Limitations
+* **Prediction model is intentionally naive**. Our estimate is `avg_price_m2 × surface`, which gives a city-level average with no adjustment for property-specific features. Variables like district, floor, number of rooms, property age, or energy rating are not accounted for. This means the model can produce estimates that are plausible at the city level but miss the mark for a specific listing, especially in cities with high intra-city price variance (e.g., Paris arrondissements).
+* **City coverage depends on DVF data quality**. Cities are populated from the benchmark dataset via a scrollable dropdown, so users can only select cities that exist in the data. However, if a city is sparsely represented in DVF, its benchmark rate may be statistically unreliable — the system has no mechanism to flag low-confidence estimates or fall back to a regional or departmental average.
+* **The anomaly thresholds (−20% / +30%) are heuristics**. They were set manually and have not been validated against historical transaction data. A property flagged as overpriced may simply be premium; a property flagged as normal may still be a poor deal. Users should treat the output as a first filter, not a final verdict.
+* **No authentication or rate limiting**. The API is fully open. In a production context, this would need to be addressed before any public-facing deployment.
+
+## What We Did Not Deliver
+We want to be transparet to the team maintaining or extending this system by calling out these following issues: 
+* **No regression model**. We scoped this project as a rule-based benchmark tool. Training a regression model (e.g., with district, rooms, floor, energy class as features) would significantly improve accuracy.
+* **No data refresh pipeline**. The benchmark CSV is static. DVF data is updated annually; there is currently no automated process to re-pull, re-aggregate, and redeploy updated benchmarks.
+* **The anomaly recommendation is vague**. When an anomaly is detected, the user is advised to investigate further but is given no actionable next step (e.g., contact information for official valuation bodies or local agencies).
+
+## What Could Be Done In The Future 
+* Frontend
+   * Migrate the current form-based UI to an LLM-powered chatbot interface, enabling users to ask ad-hoc questions beyond price and anomaly analysis.
+   * Make anomaly recommendations more actionable — for example, by surfacing contact information for official departments (notaires, DGFiP) or well-established regional agencies when a pricing anomaly is detected.
+   
+* Backend
+   * Replace the naive estimator with a regression model trained on DVF data, incorporating features such as district, number of rooms, floor level, property age, and energy rating. This would allow property-specific estimates rather than city-wide averages.
+   * Introduce automated benchmark refresh: a scheduled job that pulls updated DVF exports, recomputes city averages, and redeploys the updated CSV without manual intervention.
+   * Add confidence intervals to estimates, so users understand the reliability of the benchmark for their specific city.
+
+------------------------------------------
+# PriceYourHouse - Docker Version
 
 This repository contains a simple **HOUSE PRICE CALCULATOR** for estimating house prices in FRANCE, it also has the ability to identify if , given a surface area(square meter) and its price(euros), the pricing is reasonable.
 
-------------------------------------------
-# Data Source
+
+## Data Source
 
 We use data from DVF of the past years and group by with cities. 
 Thus, we were able to calculate a average price estimator of house in euros per squared meter.
@@ -154,11 +188,6 @@ docker run -d \
 
 - Frontend: http://localhost:8501  
 - Backend API: http://localhost:8000  
-------------------------------------------
-## Where to improve
 
-(1) We used a rather naive prediction model: predicted_price = average price * surface area.<br>
-(2) We can enrich features (district, property age, rooms, floor, energy rating) and train a regression model to reduce bias from city-level average <br>
-(2) We could use a google gemini api to build a chatbot that further assists our customer in using this app <br>
 
 
