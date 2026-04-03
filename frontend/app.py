@@ -44,8 +44,8 @@ st.sidebar.markdown(
     """
 ### Weclome to PriceYourHouse!
 
-Thank you for choosing ou service PriceYourHouse! Our price analyzer will help you, as a potential buyer of a property, to determine if listed price is reasonable and avoid potential risks.
-Start simply by following th procedures:
+Thank you for choosing our service PriceYourHouse! Our price analyzer will help you, as a potential buyer of a property, to determine if listed price is reasonable and avoid potential risks.
+Start simply by following the procedures:
 1. You select a city/region of the property
 2. You type in the surface area and listed value of the property 
 3. Upon clicking the estimate price button, you will get an estimated price of the property
